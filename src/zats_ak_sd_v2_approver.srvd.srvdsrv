@@ -1,0 +1,11 @@
+@EndUserText.label: 'Service Def for approver app for ZATS_AK_TRAVEL_APPROVER'
+define service ZATS_AK_SD_V2_APPROVER {
+  expose ZATS_AK_TRAVEL_APPROVER  as Travel;
+  expose ZATS_AK_BOOKING_APPROVER as Booking;
+  expose /DMO/I_Agency            as Agency;
+  expose /DMO/I_Customer          as Customer;
+  expose /DMO/I_Carrier           as Carrier;
+  expose /DMO/I_Connection        as Connection;
+  expose /DMO/I_Overall_Status_VH as OverallStatus;
+  expose /DMO/I_Booking_Status_VH as BookingStatus;
+}

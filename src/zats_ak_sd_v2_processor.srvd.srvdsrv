@@ -1,0 +1,13 @@
+@EndUserText.label: 'Service Def for processor app for ZATS_AK_TRAVEL_PROCESSOR'
+define service ZATS_AK_SD_V2_PROCESSOR {
+  expose ZATS_AK_TRAVEL_PROCESSOR    as Travel;
+  expose ZATS_AK_BOOKING_PROCESSOR   as Booking;
+  expose ZATS_AK_ATTACH_PROCESSOR    as Attachment;
+  expose ZATS_AK_BOOKSUPPL_PROCESSOR as BookingSupplement;
+  expose /DMO/I_Agency               as Agency;
+  expose /DMO/I_Customer             as Customer;
+  expose /DMO/I_Carrier              as Carrier;
+  expose /DMO/I_Connection           as Connection;
+  expose /DMO/I_Overall_Status_VH    as OverallStatus;
+  expose /DMO/I_Booking_Status_VH    as BookingStatus;
+}

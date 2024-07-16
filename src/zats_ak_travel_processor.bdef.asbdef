@@ -1,0 +1,49 @@
+projection;
+strict ( 2 );
+use draft; // To enable draft
+define behavior for ZATS_AK_TRAVEL_PROCESSOR alias Travel
+//Since Augment can only be created on behavior Projection and also since we dont have a dedicated
+// class for implementing code for behavior projection, we are creating a new one.
+implementation in class zbp_ats_ak_travel_proc unique
+{
+  use create ( augment, precheck ); //Augment is to add default value to a field during creation
+  use update ( precheck ); // Precheck is to perform validation
+  use delete;
+
+  // Deaft actions
+  use action Activate;
+  use action Prepare;
+  use action Edit;
+  use action Discard;
+  use action Resume;
+
+  use action copyTravel; // This is to expose data action copyTravel mentioned in bdef ZATS_AK_TRAVEL
+  use association _Booking { create; with draft; }
+  use association _Attachment { create; with draft; }
+}
+
+define behavior for ZATS_AK_BOOKING_PROCESSOR alias Booking
+{
+  use update;
+  use delete;
+
+  use association _Travel { with draft; }
+  use association _BookingSupplement { create; with draft; }
+}
+
+define behavior for ZATS_AK_BOOKSUPPL_PROCESSOR alias BookSuppl
+{
+  use update;
+  use delete;
+
+  use association _Travel { with draft; }
+  use association _Booking { with draft; }
+}
+
+define behavior for ZATS_AK_ATTACH_PROCESSOR alias Attachment
+{
+  use update;
+  use delete;
+
+  use association _Travel { with draft; }
+}

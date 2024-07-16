@@ -1,0 +1,36 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+typeName: 'Suppliment',
+typeNamePlural: 'Suppliments',
+title: { value: 'BookingSupplementId' },
+description: { value: '_SupplementText.description' }
+}
+
+annotate view ZATS_AK_BOOKSUPPL_PROCESSOR
+    with 
+{
+  //    TravelId;
+  //    BookingId;
+  @UI.facet: [{
+  purpose: #STANDARD,
+  type: #IDENTIFICATION_REFERENCE,
+  position: 10,
+  label: 'Suppliment Information'
+   }]
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  BookingSupplementId;
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  SupplementId;
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  Price;
+  //    CurrencyCode;
+  //    LastChangedAt;
+  //    /* Associations */
+  //    _Booking;
+  //    _Product;
+  //    _SupplementText;
+  //    _Travel;  
+}

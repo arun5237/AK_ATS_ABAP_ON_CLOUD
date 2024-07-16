@@ -1,0 +1,34 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZATS_AK_TRAVEL_APPROVER alias Travel
+{
+  //  use create; //Approver cannot create new travel request. So commented
+  use update;
+  //  use delete; //Approver cannot delete new travel request. So commented
+
+  // Approver shouldn't be changing below fields. Hence read-only
+  field ( readonly ) TravelId, AgencyId, CustomerId, BeginDate, EndDate,
+  TotalPrice, Description;
+
+  use action acceptTravel;
+  use action rejectTravel;
+
+  use action Prepare;
+  use action Edit;
+  use action Resume;
+  use action Activate;
+  use action Discard;
+
+  // Removed addition { create; with draft; } from below statement as approver cannot create booking
+  use association _Booking;
+}
+
+define behavior for ZATS_AK_BOOKING_APPROVER alias Booking
+{
+  //  use update; //Approver shouldn't edit booking, hence commented
+  //  use delete; //Approver shouldn't delete booking, hence commented
+
+  use association _Travel { with draft; }
+}
